@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Guessing Game</title>
+  </head>
+  <body>
+    <h1>Color Guessing Game</h1>
+    <button type="button" onclick="runGame()">Start Game</button>
+    <script>
+      function runGame() {
+        let guessArray = [
+          "blue",
+          "cyan",
+          "gold",
+          "gray",
+          "green",
+          "magenta",
+          "orange",
+          "red",
+          "white",
+          "yellow",
+        ];
+        let guessColor;
+        let correct = false;
+        let numTries = 0;
+        let guessIndex;
+
+        const targetColorIndex = Math.floor(Math.random() * guessArray.length);
+        const targetColor = guessArray[targetColorIndex];
+        console.log(targetColor);
+
+        do {
+          guessColor = prompt(
+            `I am thinking of one of these colors.\n\n${guessArray.join(
+              ", "
+            )}\n\nWhat color am I thinking of?`
+          )
+            .toLowerCase()
+            .trim();
+
+          numTries += 1;
+
+          correct = targetColor === guessColor;
+
+          if (!guessArray.includes(guessColor)) {
+            alert("Sorry I don't recognize your color.\n\nPlease try again.");
+          }
+          if (!correct) {
+            if (guessColor < targetColor) {
+              alert(
+                "Sorry your guess is incorrect.\n\nHint: Your guess is alphabelically lower than mine.\n\nPlease try again."
+              );
+            } else {
+              alert(
+                "Sorry your guess is incorrect.\n\nHint: Your guess is alphabelically higher than mine.\n\nPlease try again."
+              );
+            }
+          } else {
+            correct = true;
+            alert(
+              `Congratulations! You have guessed the color!\n\nIt took you ${numTries} guesses to finish the game.\n\nHit OK to see the colour in the background.`
+            );
+            document.body.style.backgroundColor = targetColor;
+          }
+        } while (!correct);
+      }
+    </script>
+  </body>
+</html>
+
+<!-- // what is the problem i need to solve //what steps //-variables, functions, //
+write the flow in plain english 
+-->
+
+<!-- guessArray[0]
+ guessArray[1] -->
